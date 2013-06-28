@@ -1,4 +1,6 @@
-module Exotel
-end
+require_relative "exotel/version"
+require_relative "exotel/sms_api"
 
-require "exotel/api"
+module Exotel
+  # Your code goes here...
+end
