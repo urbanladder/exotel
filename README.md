@@ -45,18 +45,18 @@ Send sms as following
 Exotel::SmsApi.set_credentials("<My Exotel SID>", "<My Exotel Token>")
 response_hash = Exotel::SmsApi.send_sms(sms_data)
 ```
-query for sms status in following manner
+Query for sms status in following manner
 
-1. Use the sms sid generated directly 
+1) Using the sms sid generated directly 
 ```ruby
 sms_sid = response_hash["Sid"]
 sms_status_hash = Exotel::SmsApi.check_sms_status(sms_sid)
 sms_status = sms_status_hash["Status"]
 ```
-2. Use the response hash generated on sending the sms
+2) Using the response hash generated on sending the sms
 ```ruby
-sms_status_hash = Exotel::SmsApi.check_sms_status(response_hash)
-sms_status = sms_status_hash["Status"]
+    sms_status_hash = Exotel::SmsApi.check_sms_status(response_hash)
+    sms_status = sms_status_hash["Status"]
 ```
 
 Contributing
