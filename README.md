@@ -15,7 +15,7 @@ Add this line to your application's Gemfile:
 And then execute:
 
 ```
-    $ bundle install --path gem/installation/path/for/application
+    bundle install --path gem/installation/path
 ```
 
 Or install it yourself as:
@@ -38,10 +38,25 @@ sms_data = {
   "To"   => "<Phone Number>"
   "Body" => "<SMS content>"
 }
+```
+Send sms as following
 
-Exotel::Api.set_credentials("<My Exotel SID>", "<My Exotel Token>")
-Exotel::Api.send_sms(post_data)
+```ruby
+Exotel::SmsApi.set_credentials("<My Exotel SID>", "<My Exotel Token>")
+response_hash = Exotel::SmsApi.send_sms(sms_data)
+```
+query for sms status in following manner
 
+1. Use the sms sid generated directly 
+```ruby
+sms_sid = response_hash["Sid"]
+sms_status_hash = Exotel::SmsApi.check_sms_status(sms_sid)
+sms_status = sms_status_hash["Status"]
+```
+2. Use the response hash generated on sending the sms
+```ruby
+sms_status_hash = Exotel::SmsApi.check_sms_status(response_hash)
+sms_status = sms_status_hash["Status"]
 ```
 
 Contributing
