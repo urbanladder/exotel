@@ -9,13 +9,13 @@ Install
 Add this line to your application's Gemfile:
 
 ```
-    gem 'exotel'
+gem 'exotel'
 ```
 
 And then execute:
 
 ```
-    bundle install --path gem/installation/path
+bundle install --path gem/installation/path
 ```
 
 Or install it yourself as:
@@ -55,8 +55,8 @@ sms_status = sms_status_hash["Status"]
 ```
 2) Using the response hash generated on sending the sms
 ```ruby
-    sms_status_hash = Exotel::SmsApi.check_sms_status(response_hash)
-    sms_status = sms_status_hash["Status"]
+sms_status_hash = Exotel::SmsApi.check_sms_status(response_hash)
+sms_status = sms_status_hash["Status"]
 ```
 
 Contributing
