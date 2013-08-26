@@ -1,37 +1,20 @@
 require 'httparty'
 
 module Exotel
-
-  class SmsApi
-
-    include HTTParty
-    base_uri "https://twilix.exotel.in"
-
-    class << self
-      attr_accessor :sid, :token, :has_all_fields
-
-      # <b>Expects</b>
-      # * sid => your exotel sid 
-      # * token => your exotel token 
-      #
-      def set_credentials(sid, token)
-        @sid = sid
-        @token = token
-        basic_auth @sid, @token
-      end
+  class SmsApi < Auth
 
       # <b>Checks for following for all required fields have been passed</b>
       # * <b>input[:From]</b> <em>Hash</em> - Contains sender Id
       # * <b>input[:To]</b> <em>Hash</em> - number of recipient
       # * <b>input[:Body]</b> <em>Hash</em> - message body 
       #
-      def has_fields_for_sending_sms(input)
+      def self.has_fields_for_sending_sms(input)
         @has_fields = false
-        keys_object = [:From , :To , :Body ]
-        keys_string = ["From", "To", "Body"]
+        keys_alternatives = [[:From , :To , :Body ], ["From", "To", "Body"]]
         if input.is_a? Hash
-          @has_fields = true if keys_object.all? {|field| input.has_key? field} || \
-                      keys_string.all? {|field| input.has_key? field}
+          keys_alternatives.each do |alternative|
+            @has_fields = true if alternative.all? {|field| input.has_key? field}
+          end
         end
         raise ArgumentError, "Accepts [From, To, Body] keys in same notation" if ! @has_fields
       end
@@ -44,7 +27,7 @@ module Exotel
       # <b>Returns</b>
       # * Hash{}: Hash containing api response 
       #
-      def send_sms(input)
+      def self.send_sms(input)
         has_fields_for_sending_sms(input)
         options = {:body => input}
         path = "/v1/Accounts/%s/Sms/send" % [@sid]
@@ -58,7 +41,7 @@ module Exotel
       # * either <b>input[:Sid]</b> <em>Hash</em> - the response hash containing sms_sid by key Sid 
       # * or <b>sms_sid</b> <em>(String)</em> - String having sms_sid 
       #
-      def has_sid_for_checking_sms_status(input)
+      def self.has_sid_for_checking_sms_status(input)
         @has_sms_sid = false
         if input.is_a? Hash
           @sms_sid = input["Sid"]
@@ -77,12 +60,11 @@ module Exotel
       # <b>Returns</b>
       # * Hash{}: Hash containing api response 
       #
-      def check_sms_status(input)
+      def self.check_sms_status(input)
         has_sid_for_checking_sms_status(input)
         path = "/v1/Accounts/%s/SMS/Messages/%s" % [@sid, @sms_sid]
         response = get(path)
         return response["TwilioResponse"]["SMSMessage"]
       end
-    end
   end
 end
