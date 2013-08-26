@@ -1,3 +1,9 @@
 source "http://rubygems.org"
 
-gem "httparty"
+# For debugging
+gem 'pry'
+gem 'debugger'
+gem 'pry-debugger'
+
+# For network call api requests
+gem 'httparty'
