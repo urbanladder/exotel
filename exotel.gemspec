@@ -6,8 +6,8 @@ require 'exotel/version'
 Gem::Specification.new do |spec|
   spec.name          = "exotel"
   spec.version       = Exotel::VERSION
-  spec.authors       = ["anshul"]
-  spec.email         = ["anshul@urbanladder.com", "anshl.goyl@gmail.com"]
+  spec.authors       = ["Anshul Goyal"]
+  spec.email         = ["anshul@urbanladder.com"]
   spec.description   = %q{Gem for using exotel api}
   spec.summary       = %q{The current version supports sending of an sms via the api, and querying for status of the sms}
   spec.homepage      = ""
