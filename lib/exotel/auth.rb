@@ -2,9 +2,11 @@ require 'httparty'
 
 module Exotel
   class Auth
+
     include HTTParty
     base_uri "https://twilix.exotel.in"
     attr_accessor :sid, :token
+
     # <b>Expects</b>
     # * sid => your exotel sid 
     # * token => your exotel token 
