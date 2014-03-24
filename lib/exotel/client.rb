@@ -22,7 +22,7 @@ module Exotel
     end
   
     def execute(method)
-      response = Response.construct self.class.send(method,@resource.url,@opts)
+      response = Response.construct self.class.send(method,@resource.url(@auth[:username]),@opts)
       @resource = Resource.new
       response
     end
