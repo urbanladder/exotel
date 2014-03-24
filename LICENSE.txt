@@ -1,4 +1,4 @@
-Copyright (c) 2013 Anshul Goyal
+Copyright (c) 2013 Urban Ladder
 
 MIT License
 
