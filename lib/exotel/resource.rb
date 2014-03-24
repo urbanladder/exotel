@@ -10,8 +10,8 @@ module Exotel
       @keys << key;  @options.merge!(options) if options
     end
 
-    def url
-      @url = "https://twilix.exotel.in/" + @keys.join("/")
+    def url sid
+      @url = "https://twilix.exotel.in/" + "v1/Accounts/" + "#{sid}/" + @keys.join("/")
     end
   end
 end
