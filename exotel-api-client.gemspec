@@ -1,9 +1,9 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'exotel/version'
+require 'exotel-api-client/version'
 
 Gem::Specification.new do |s|
-  s.name = "exotel"
+  s.name = "exotel-api-client"
   s.version = Exotel::VERSION
   s.authors = "Kumar Akarsh"
   s.email = ["akarsh@urbanladder.com","akarsh1357@gmail.com"]

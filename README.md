@@ -7,7 +7,7 @@ Install
 =======
 
 ```
-gem install exotel
+gem install exotel-api-client
 ```
 
 Requirements
@@ -21,7 +21,7 @@ Examples
 ### Setup
 
 ```ruby
-require 'exotel'
+require 'exotel-api-client'
 
 # put your credentials here
 account_sid = '<My Exotel SID>'
