@@ -40,6 +40,17 @@ sms_data = {
   "Body" => "<SMS content>"
 }
 
-client.v1.Accounts.<My Exotel SID>.Sms.post(sms_data)
+client.Sms.post(sms_data)
+```
 
+### Get Status of An SMS
+
+```ruby
+client.SMS.Messages({:sid => '<SmsSid>'})
+```
+
+### Get Call Details
+
+```ruby
+client.Calls({:sid => '<CallSid>'})
 ```
