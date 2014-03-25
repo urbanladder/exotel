@@ -8,7 +8,7 @@ module Exotel
       @auth = {:username => sid, :password => token}
       @resource = Resource.new
     end
-  
+
     def method_missing(method, *args, &block)
       @resource.append(method, args[0])
       @opts = {:query => @resource.options, :basic_auth => @auth}
@@ -20,12 +20,12 @@ module Exotel
         return self
       end
     end
-  
+
     def execute(method)
       response = Response.construct self.class.send(method,@resource.url(@auth[:username]),@opts)
       @resource = Resource.new
       response
     end
-  
+
   end
 end
