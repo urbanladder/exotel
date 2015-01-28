@@ -11,12 +11,13 @@ module Exotel
 
     def send_sms(from, to, msg)
       self.Sms
-      @resource.append(:send, nil)
-      self.post({
+      @resource.append(:send, {
         :From => from,
         :To   => to,
         :Body => msg
       })
+      @opts = {:query => @resource.options, :basic_auth => @auth}
+      execute(:post)
     end
 
     def method_missing(method, *args, &block)
