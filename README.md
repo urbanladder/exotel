@@ -40,7 +40,7 @@ sms_data = {
   "Body" => "<SMS content>"
 }
 
-client.Sms.post(sms_data)
+client.send_sms(sms_data)
 ```
 
 ### Get Status of An SMS
