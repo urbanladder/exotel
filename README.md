@@ -34,13 +34,11 @@ account_token = '<My Exotel Token>'
 ### Send An SMS
 
 ```ruby
-sms_data = {
-  "From" => "<6-character Sender ID>"
-  "To"   => "<Phone Number>"
-  "Body" => "<SMS content>"
-}
+from_phone = "<6-character Sender ID>"
+to_phone   = "<Phone Number>"
+msg = "<SMS content>"
 
-client.send_sms(sms_data)
+client.send_sms(from_phone, to_phone, msg)
 ```
 
 ### Get Status of An SMS
