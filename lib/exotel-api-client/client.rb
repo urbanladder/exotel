@@ -4,9 +4,19 @@ module Exotel
   class Client
     include HTTParty
 
-    def initialize(sid,token)
+    def initialize(sid, token)
       @auth = {:username => sid, :password => token}
       @resource = Resource.new
+    end
+
+    def send_sms(from, to, msg)
+      self.Sms
+      @resource.append(:send, nil)
+      self.post({
+        :From => from,
+        :To   => to,
+        :Body => msg
+      })
     end
 
     def method_missing(method, *args, &block)
@@ -22,7 +32,7 @@ module Exotel
     end
 
     def execute(method)
-      response = Response.construct self.class.send(method,@resource.url(@auth[:username]),@opts)
+      response = Response.construct self.class.send(method, @resource.url(@auth[:username]), @opts)
       @resource = Resource.new
       response
     end

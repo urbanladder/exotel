@@ -1,17 +1,20 @@
 module Exotel
   class Resource
+    BASE_URL = "https://twilix.exotel.in/" + "v1/Accounts/" + "%s/%s"
     attr_reader :options
 
     def initialize
-      @keys = []; @options = {}
+      @keys = []
+      @options = {}
     end
 
-    def append(key,options)
-      @keys << key;  @options.merge!(options) if options
+    def append(key, options)
+      @keys << key
+      @options.merge!(options) if options
     end
 
-    def url sid
-      @url = "https://twilix.exotel.in/" + "v1/Accounts/" + "#{sid}/" + @keys.join("/")
+    def url(sid)
+      @url = BASE_URL % [sid, @keys.join("/")]
     end
   end
 end
